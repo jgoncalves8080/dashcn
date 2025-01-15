@@ -1,0 +1,13 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "activeProjects": "Active Projects",
+    "completedProjects": "Completed Projects",
+    "delayedProjects": "Delayed Projects"
+  },
+  "projects": {
+    "title": "Projects",
+    "newProject": "New Project",
+    "projectCompleted": "Completed"
+  }
+}
