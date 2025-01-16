@@ -1,7 +1,11 @@
+import { ThemeProvider } from '@/presentation/contexts/ThemeProvider'
 import type { Metadata } from 'next'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
 import localFont from 'next/font/local'
+import { ToastContainer } from 'react-toastify'
+
+import { Layout } from '@/presentation/components/layout/'
 import './globals.css'
 
 const geistSans = localFont({
@@ -17,7 +21,7 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: 'Dashboard',
-  description: 'My Dashboard',
+  description: 'My Dashboard'
 }
 
 export default async function RootLayout({
@@ -32,7 +36,12 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <NextIntlClientProvider messages={messages}>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider>
+            <Layout>{children}</Layout>
+            <ToastContainer />
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   )

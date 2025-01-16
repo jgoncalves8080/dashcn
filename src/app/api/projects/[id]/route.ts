@@ -30,8 +30,7 @@ export async function PATCH(
   try {
     const id = (await params).id;
     const body = await req.json();
-    const { name, description, startDate, endDate, responsible, progress } =
-      body;
+    const { name, description, startDate, endDate, responsible, progress, status } = body
 
     const updatedProject = await prisma.project.update({
       where: { id: Number(id) },
@@ -42,8 +41,9 @@ export async function PATCH(
         endDate: endDate ? new Date(endDate) : undefined,
         responsible,
         progress,
-      },
-    });
+        status
+      }
+    })
 
     return Response.json(updatedProject);
   } catch (error) {
@@ -58,6 +58,7 @@ export async function DELETE(
 ) {
   try {
     const id = (await params).id;
+
     await prisma.project.delete({ where: { id: Number(id) } });
     
     return Response.json({ status: 204 });

@@ -1,13 +1,81 @@
 {
   "dashboard": {
     "title": "Dashboard",
-    "activeProjects": "Active Projects",
-    "completedProjects": "Completed Projects",
-    "delayedProjects": "Delayed Projects"
+    "projects": "dos projetos",
+    "projectDistribution": "Distribuição de Projetos"
   },
   "projects": {
-    "title": "Projects",
-    "newProject": "New Project",
-    "projectCompleted": "Completed"
+    "title": "Projetos",
+    "newProject": "Novo Projeto",
+    "noProjects": "Sem projetos para mostrar",
+    "createNew": "Parece que você ainda não tem projetos. Crie um novo projeto clicando no botão acima.",
+    "completed": "concluído"
+  },
+   "sidebar": {
+    "manager": "Gerenciador"
+  },
+  "header": {
+    "welcome": "Bem-vindo!",
+    "avatarAlt": "Avatar do Usuário",
+    "profile": "Perfil",
+    "logout": "Terminar Sessão",
+    "toggleTheme": "Alterar tema"
+  },
+  "comments": {
+    "addComment": "Adicionar Comentário",
+    "writeComment": "Escreva um comentário...",
+    "adding": "Adicionando...",
+    "deleteConfirmation": "Tem certeza que deseja excluir?",
+    "yes": "Sim",
+    "cancel": "Cancelar",
+    "deletedSuccessfully": "Comentário excluído com sucesso!",
+    "errorDeleting": "Erro ao excluir comentário.",
+    "comments": "Comentários",
+    "noComments": "Este projeto não possui comentários.",
+    "loadingComments": "Carregando comentários..."
+  },
+  "tasks": {
+    "associatedTasks": "Tarefas Associadas",
+    "noTasks": "Não há tarefas associadas.",
+    "associateNewTask": "Associar Nova Tarefa",
+    "selectTask": "Selecione uma tarefa para associar",
+    "noTasksAvailable": "Não há tarefas disponíveis para associar"
+  },
+  
+  "error": {
+    "pageTitle": "Erro - Algo deu errado!",
+    "title": "Oooops!",
+    "message": "Algo deu errado. Não se preocupe, estamos tratando isso.",
+    "retry": "Tentar novamente",
+    "goHome": "Voltar para a Página Inicial"
+  },
+  "notFound": {
+    "pageTitle": "Página Não Encontrada",
+    "title": "404",
+    "message": "A página que você está procurando não foi encontrada.",
+    "description": "Pode ser que o link esteja quebrado ou você tenha digitado o endereço errado.",
+    "goBack": "Voltar para a Página Inicial"
+  },
+  "common": {
+    "loading": "Carregando...",
+    "back": "Voltar",
+    "save": "Salvar"
+  },
+  "createProject": {
+    "title": "Novo Projeto",
+    "description": "Preencha os campos abaixo para criar um novo projeto.",
+    "nameLabel": "Nome do Projeto",
+    "nameRequired": "Nome do projeto é obrigatório",
+    "startDateLabel": "Data de Início",
+    "startDateRequired": "Data de início é obrigatória",
+    "endDateLabel": "Data de Término",
+    "endDateRequired": "Data de término é obrigatória",
+    "descriptionLabel": "Descrição",
+    "descriptionRequired": "Descrição é obrigatória",
+    "responsibleLabel": "Responsável",
+    "responsiblePlaceholder": "Selecione um responsável",
+    "joao": "João",
+    "maria": "Maria",
+    "carlos": "Carlos"
   }
 }

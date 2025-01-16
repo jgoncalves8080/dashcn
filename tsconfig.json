@@ -40,6 +40,9 @@
       "@/lib/*": [
         "./src/lib/*"
       ],
+      "@/service/*": [
+        "./src/service/*"
+      ],
     }
   },
   "include": [
