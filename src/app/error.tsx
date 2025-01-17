@@ -1,11 +1,12 @@
-'use client'
+'use client';
 
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { useTranslations } from 'next-intl'
-import Head from 'next/head'
-import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useTranslations } from 'next-intl';
+import Head from 'next/head';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
+
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 type Props = {
   error: Error
@@ -13,17 +14,17 @@ type Props = {
 }
 
 export default function Error({ error, reset }: Props) {
-  const t = useTranslations() 
-  const router = useRouter()
+  const t = useTranslations();
+  const router = useRouter();
 
   const handleReset = () => {
-    reset()
-    router.push('/')
-  }
+    reset();
+    router.push('/');
+  };
 
   useEffect(() => {
-    console.error(error)
-  }, [error, reset])
+    console.error(error);
+  }, [error, reset]);
 
   return (
     <>
@@ -49,5 +50,5 @@ export default function Error({ error, reset }: Props) {
         </Card>
       </div>
     </>
-  )
+  );
 }

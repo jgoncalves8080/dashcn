@@ -1,5 +1,5 @@
-import DashboardView from '@/presentation/views/DashboardView/inde'
+import DashboardView from '@/presentation/views/DashboardView/inde';
 
 export default function HomePage() {
-  return <DashboardView />
+  return <DashboardView />;
 }

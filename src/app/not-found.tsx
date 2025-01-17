@@ -1,18 +1,19 @@
-'use client'
+'use client';
 
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { useTranslations } from 'next-intl'
-import Head from 'next/head'
-import { useRouter } from 'next/navigation'
+import { useTranslations } from 'next-intl';
+import Head from 'next/head';
+import { useRouter } from 'next/navigation';
+
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 export default function NotFound() {
-  const t = useTranslations() 
-  const router = useRouter()
+  const t = useTranslations();
+  const router = useRouter();
 
   const goBack = () => {
-    router.push('/')
-  }
+    router.push('/');
+  };
 
   return (
     <>
@@ -36,5 +37,5 @@ export default function NotFound() {
         </Card>
       </div>
     </>
-  )
+  );
 }

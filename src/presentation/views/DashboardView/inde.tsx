@@ -1,37 +1,40 @@
-'use client'
+'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Progress } from '@/components/ui/progress'
-import { Skeleton } from '@/presentation/components/ui/skeleton'
-import { fetchProjectStatus } from '@/service/api'
-import { useTranslations } from 'next-intl'
-import React, { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
-import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts'
+import { useTranslations } from 'next-intl';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import { Cell, Pie, PieChart, ResponsiveContainer, Tooltip } from 'recharts';
+
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Progress } from '@/components/ui/progress';
+import { ProjectStatus } from '@/models/Project/Project';
+import { Skeleton } from '@/presentation/components/ui/skeleton';
+import { fetchProjectStatus } from '@/service/api';
 
 const DashboardView: React.FC = () => {
-  const t = useTranslations() 
-  const [projectStatus, setProjectStatus] = useState<any[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
+  const t = useTranslations();
+  const [projectStatus, setProjectStatus] = useState<ProjectStatus[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchProjectStatus()
-        setProjectStatus(data)
+        const data = await fetchProjectStatus();
+        setProjectStatus(data);
       } catch (error) {
-        setError('Erro ao carregar os dados. Tente novamente.')
-        toast.error('Erro ao carregar os dados.')
+        console.error('Erro ao carregar dados:', error);
+        setError('Erro ao carregar os dados. Tente novamente.');
+        toast.error('Erro ao carregar os dados.');
       } finally {
-        setIsLoading(false)
+        setIsLoading(false);
       }
-    }
+    };
 
-    fetchData()
-  }, [])
+    fetchData();
+  }, []);
 
-  const totalProjects = projectStatus.reduce((acc, curr) => acc + curr.count, 0)
+  const totalProjects = projectStatus.reduce((acc, curr) => acc + curr.count, 0);
 
   if (isLoading) {
     return (
@@ -64,7 +67,7 @@ const DashboardView: React.FC = () => {
           </Card>
         </div>
       </div>
-    )
+    );
   }
 
   if (error) {
@@ -75,7 +78,7 @@ const DashboardView: React.FC = () => {
         </h1>{' '}
         <p className="text-red-500">{error}</p>
       </div>
-    )
+    );
   }
 
   return (
@@ -102,7 +105,7 @@ const DashboardView: React.FC = () => {
       <div className="mt-8">
         <Card className="shadow-md">
           <CardHeader>
-            <CardTitle>{t('dashboard.projectDistribution')}</CardTitle> 
+            <CardTitle>{t('dashboard.projectDistribution')}</CardTitle>
           </CardHeader>
           <CardContent className="h-64">
             <ResponsiveContainer width="100%" height="100%">
@@ -114,7 +117,8 @@ const DashboardView: React.FC = () => {
                   cx="50%"
                   cy="50%"
                   outerRadius={80}
-                  fill="#8884d8">
+                  fill="#8884d8"
+                >
                   {projectStatus.map((_, index) => (
                     <Cell key={index} fill={projectStatus[index].color} />
                   ))}
@@ -126,7 +130,7 @@ const DashboardView: React.FC = () => {
         </Card>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default DashboardView
+export default DashboardView;

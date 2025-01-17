@@ -1,32 +1,34 @@
-'use client'
+'use client';
 
-import { Button } from '@/presentation/components/ui/button'
+import { useTranslations } from 'next-intl';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
+
+import { Project } from '@/models/Project/Project';
+import { Button } from '@/presentation/components/ui/button';
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle
-} from '@/presentation/components/ui/dialog'
-import { Input } from '@/presentation/components/ui/input'
-import { Label } from '@/presentation/components/ui/label'
+} from '@/presentation/components/ui/dialog';
+import { Input } from '@/presentation/components/ui/input';
+import { Label } from '@/presentation/components/ui/label';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue
-} from '@/presentation/components/ui/select'
-import { Textarea } from '@/presentation/components/ui/textarea'
-import { createProject } from '@/service/api'
-import { useTranslations } from 'next-intl'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { toast } from 'react-toastify'
+} from '@/presentation/components/ui/select';
+import { Textarea } from '@/presentation/components/ui/textarea';
+import { createProject } from '@/service/api';
 
 interface CreateProjectModalProps {
   onClose: () => void
-  onSuccess: (project: any) => void
+  onSuccess: (project: Project) => void // eslint-disable-line no-unused-vars
 }
 
 interface FormValues {
@@ -38,34 +40,35 @@ interface FormValues {
 }
 
 export const CreateProjectModal: React.FC<CreateProjectModalProps> = ({ onClose, onSuccess }) => {
-  const t = useTranslations()
+  const t = useTranslations();
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors }
-  } = useForm<FormValues>()
-  const [loading, setLoading] = useState(false)
+  } = useForm<FormValues>();
+  const [loading, setLoading] = useState(false);
 
   const onSubmit = async (data: FormValues) => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const newProject = await createProject(data)
-      onSuccess(newProject)
+      const newProject = await createProject(data);
+      onSuccess(newProject);
       toast.success(t('createProject.projectCreatedSuccess'), {
         position: 'top-right',
         autoClose: 2000
-      })
-      onClose()
+      });
+      onClose();
     } catch (error) {
+      console.log(error);
       toast.error(t('createProject.projectCreateError'), {
         position: 'top-right',
         autoClose: 2000
-      })
+      });
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <Dialog open onOpenChange={onClose}>
@@ -135,5 +138,5 @@ export const CreateProjectModal: React.FC<CreateProjectModalProps> = ({ onClose,
         </form>
       </DialogContent>
     </Dialog>
-  )
-}
+  );
+};

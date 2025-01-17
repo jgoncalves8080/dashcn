@@ -1,19 +1,20 @@
-'use client'
+'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/presentation/components/ui/avatar'
+import { Menu } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+
+import { Avatar, AvatarFallback, AvatarImage } from '@/presentation/components/ui/avatar';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger
-} from '@/presentation/components/ui/dropdown-menu'
-import { useTheme } from '@/presentation/contexts/ThemeProvider'
-import { Menu } from 'lucide-react'
-import { useTranslations } from 'next-intl'
+} from '@/presentation/components/ui/dropdown-menu';
+import { useTheme } from '@/presentation/contexts/ThemeProvider';
 
 export const Header = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
-  const { theme, toggleTheme } = useTheme()
-  const t = useTranslations() 
+  const { theme, toggleTheme } = useTheme();
+  const t = useTranslations();
 
   return (
     <header className="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-30">
@@ -55,7 +56,8 @@ export const Header = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
           <button
             onClick={toggleTheme}
             className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600"
-            aria-label={t('header.toggleTheme')}>
+            aria-label={t('header.toggleTheme')}
+          >
             {theme === 'dark' ? (
               <span className="text-yellow-400">🌙</span>
             ) : (
@@ -65,5 +67,5 @@ export const Header = ({ toggleSidebar }: { toggleSidebar: () => void }) => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};

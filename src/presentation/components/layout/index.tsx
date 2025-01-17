@@ -1,15 +1,16 @@
-'use client'
+'use client';
 
-import { usePathname } from 'next/navigation'
-import React, { useState } from 'react'
-import { Header } from './header'
-import { Sidebar } from './sidebar'
+import { usePathname } from 'next/navigation';
+import React, { useState } from 'react';
+
+import { Header } from './header';
+import { Sidebar } from './sidebar';
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
-  const pathname = usePathname()
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const pathname = usePathname();
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen)
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   return (
     <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
@@ -25,5 +26,5 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
         <main className="flex-1 p-6 bg-gray-100 dark:bg-gray-900">{children}</main>
       </div>
     </div>
-  )
-}
+  );
+};

@@ -1,93 +1,97 @@
-'use client'
+'use client';
 
-import { Comment } from '@/models/Comment/Comment'
-import { Button } from '@/presentation/components/ui/button'
-import { Textarea } from '@/presentation/components/ui/textarea'
-import { addComment, deleteComment, fetchComments } from '@/service/api'
-import DOMPurify from 'dompurify'
-import { Trash2 } from 'lucide-react'
-import { useTranslations } from 'next-intl'
-import { useEffect, useState } from 'react'
-import { toast } from 'react-toastify'
+import DOMPurify from 'dompurify';
+import { Trash2 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+
+import { Comment } from '@/models/Comment/Comment';
+import { Button } from '@/presentation/components/ui/button';
+import { Textarea } from '@/presentation/components/ui/textarea';
+import { addComment, deleteComment, fetchComments } from '@/service/api';
 
 export const CommentSection = ({ projectId }: { projectId: string }) => {
-  const t = useTranslations()
-  const [comments, setComments] = useState<Comment[]>([])
-  const [loading, setLoading] = useState(false)
-  const [loadingComments, setLoadingComments] = useState(true)
+  const t = useTranslations();
+  const [comments, setComments] = useState<Comment[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [loadingComments, setLoadingComments] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetchComments(projectId)
-        setComments(response)
+        const response = await fetchComments(projectId);
+        setComments(response);
       } catch (error) {
-        console.error('Erro ao buscar comentários:', error)
+        console.error('Erro ao buscar comentários:', error);
       } finally {
-        setLoadingComments(false)
+        setLoadingComments(false);
       }
-    }
-    fetchData()
-  }, [projectId])
+    };
+    fetchData();
+  }, [projectId]);
 
   const handleAddComment = async (text: string) => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const sanitizedText = DOMPurify.sanitize(text)
-      const newComment = await addComment(sanitizedText, projectId)
-      setComments((prev) => [...prev, newComment])
+      const sanitizedText = DOMPurify.sanitize(text);
+      const newComment = await addComment(sanitizedText, projectId);
+      setComments((prev) => [...prev, newComment]);
     } catch (error) {
-      console.error('Erro ao adicionar comentário:', error)
+      console.error('Erro ao adicionar comentário:', error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   const handleDeleteComment = (id: number) => {
     toast(
       ({ closeToast }) => (
         <div className="flex items-center gap-4">
-          <span>{t('comments.deleteConfirmation')}</span> 
+          <span>{t('comments.deleteConfirmation')}</span>
           <Button
             className="bg-red-500 text-white px-4 py-2 rounded"
             onClick={async () => {
               try {
-                await deleteComment(id)
-                setComments((prev) => prev.filter((comment) => comment.id !== id))
-                toast.success(t('comments.deletedSuccessfully')) 
+                await deleteComment(id);
+                setComments((prev) => prev.filter((comment) => comment.id !== id));
+                toast.success(t('comments.deletedSuccessfully'));
               } catch (error) {
+                console.error('Erro ao excluir comentário:', error);
                 toast.error(t('comments.errorDeleting'), {
                   position: 'top-right',
-                  autoClose: 2000,
-                })}
-            }}>
+                  autoClose: 2000
+                });
+              }
+            }}
+          >
             {t('comments.yes')}
           </Button>
           <Button className="bg-gray-500 text-white px-4 py-2 rounded" onClick={closeToast}>
-            {t('comments.cancel')} 
+            {t('comments.cancel')}
           </Button>
         </div>
       ),
       {
         position: 'top-right',
-        autoClose: false,
+        autoClose: false
       }
-    )
-  }
-
+    );
+  };
 
   return (
     <div className="mt-6">
       <h2 className="text-2xl font-semibold">{t('comments.addComment')}</h2>
       <form
         onSubmit={(e) => {
-          e.preventDefault()
-          const formData = new FormData(e.target as HTMLFormElement)
-          const comment = formData.get('comment') as string
-          if (comment) handleAddComment(comment)
-          e.currentTarget.reset()
+          e.preventDefault();
+          const formData = new FormData(e.target as HTMLFormElement);
+          const comment = formData.get('comment') as string;
+          if (comment) handleAddComment(comment);
+          e.currentTarget.reset();
         }}
-        className="space-y-4 mt-4">
+        className="space-y-4 mt-4"
+      >
         <Textarea
           name="comment"
           placeholder={t('comments.writeComment')}
@@ -109,7 +113,8 @@ export const CommentSection = ({ projectId }: { projectId: string }) => {
             comments.map((comment) => (
               <div
                 key={comment.id}
-                className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-sm flex justify-between items-center">
+                className="p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow-sm flex justify-between items-center"
+              >
                 <div>
                   <p>{comment.text}</p>
                   <span className="text-sm text-gray-500">
@@ -118,7 +123,8 @@ export const CommentSection = ({ projectId }: { projectId: string }) => {
                 </div>
                 <button
                   onClick={() => handleDeleteComment(comment.id)}
-                  className="text-red-500 hover:text-red-700">
+                  className="text-red-500 hover:text-red-700"
+                >
                   <Trash2 size={20} />
                 </button>
               </div>
@@ -127,5 +133,5 @@ export const CommentSection = ({ projectId }: { projectId: string }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

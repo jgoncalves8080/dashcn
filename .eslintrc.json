@@ -27,12 +27,7 @@
         "vars": "all"
       }
     ],
-    "react/function-component-definition": [
-      "warn",
-      {
-        "namedComponents": "arrow-function"
-      }
-    ],
+    "react/function-component-definition": "off",
     "sort-imports": [
       "error",
       {
@@ -59,7 +54,7 @@
         "newlines-between": "always"
       }
     ],
-    "next/link-passhref": "error",
+    "next/link-passhref": "off",
     "prefer-const": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "error"

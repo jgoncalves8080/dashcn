@@ -1,18 +1,18 @@
-import prisma from "@/lib/prisma";
+import prisma from '@/lib/prisma';
 
 export async function GET() {
   try {
     const projects = await prisma.project.findMany({
       include: {
         tasks: true,
-        comments: true,
-      },
+        comments: true
+      }
     });
 
     return Response.json(projects);
   } catch (error) {
-    console.error("Error: ", error);
-    return Response.json({ error: "Erro ao buscar projetos" });
+    console.error('Error: ', error);
+    return Response.json({ error: 'Erro ao buscar projetos' });
   }
 }
 
@@ -28,12 +28,12 @@ export async function POST(req: Request) {
         startDate: new Date(startDate),
         endDate: new Date(endDate),
         responsible,
-        progress: 0,
-      },
+        progress: 0
+      }
     });
     return Response.json(newProject);
   } catch (error) {
-    console.error("Error: ", error);
-    return Response.json({ error: "Erro ao criar projeto" });
+    console.error('Error: ', error);
+    return Response.json({ error: 'Erro ao criar projeto' });
   }
 }

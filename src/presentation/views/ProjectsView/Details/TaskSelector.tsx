@@ -1,22 +1,23 @@
-'use client'
+'use client';
 
-import { Task } from '@/models/Task/Task'
+import { useTranslations } from 'next-intl';
+
+import { Task } from '@/models/Task/Task';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue
-} from '@/presentation/components/ui/select'
-import { useTranslations } from 'next-intl'
+} from '@/presentation/components/ui/select';
 
 interface TaskSelectorProps {
   tasks: Task[]
-  onAddTask: (taskId: number) => void
+  onAddTask: (taskId: number) => void // eslint-disable-line no-unused-vars
 }
 
 export const TaskSelector = ({ tasks, onAddTask }: TaskSelectorProps) => {
-  const t = useTranslations()
+  const t = useTranslations();
 
   return (
     <div className="mt-6">
@@ -40,5 +41,5 @@ export const TaskSelector = ({ tasks, onAddTask }: TaskSelectorProps) => {
         </SelectContent>
       </Select>
     </div>
-  )
-}
+  );
+};

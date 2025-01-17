@@ -1,8 +1,9 @@
-import ProjectsView from '@/presentation/views/ProjectsView'
-import React from 'react'
+import React from 'react';
+
+import ProjectsView from '@/presentation/views/ProjectsView';
 
 const ProjectPage: React.FC = () => {
-  return <ProjectsView />
-}
+  return <ProjectsView />;
+};
 
-export default ProjectPage
+export default ProjectPage;

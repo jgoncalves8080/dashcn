@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 interface OverviewCardProps {
   title: string
@@ -11,5 +11,5 @@ export const OverviewCard: React.FC<OverviewCardProps> = ({ title, count }) => {
       <h2 className="text-lg font-semibold">{title}</h2>
       <p className="text-3xl font-bold text-blue-600">{count}</p>
     </div>
-  )
-}
+  );
+};

@@ -11,7 +11,7 @@
     "createNew": "Parece que você ainda não tem projetos. Crie um novo projeto clicando no botão acima.",
     "completed": "concluído"
   },
-   "sidebar": {
+  "sidebar": {
     "manager": "Gerenciador"
   },
   "header": {
@@ -41,7 +41,7 @@
     "selectTask": "Selecione uma tarefa para associar",
     "noTasksAvailable": "Não há tarefas disponíveis para associar"
   },
-  
+
   "error": {
     "pageTitle": "Erro - Algo deu errado!",
     "title": "Oooops!",

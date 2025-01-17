@@ -1,4 +1,4 @@
-import ProjectDetailsView from '@/presentation/views/ProjectsView/Details'
+import ProjectDetailsView from '@/presentation/views/ProjectsView/Details';
 
 export type ProjectDetailsPageParams = {
   params: {
@@ -7,5 +7,5 @@ export type ProjectDetailsPageParams = {
 }
 
 export default function ProjectDetailsPage({ params: { id } }: ProjectDetailsPageParams) {
-  return <ProjectDetailsView projectId={id} />
+  return <ProjectDetailsView projectId={id} />;
 }
