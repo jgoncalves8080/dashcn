@@ -98,6 +98,7 @@ Este projeto foi desenvolvido com **Next.js**, **TailwindCSS** e **Prisma ORM**,
 - **Adição de autenticação robusta** utilizando autenticação via **Google** ou **GitHub** ou outro Provider.
 - **Implementação de criação e gerenciamento de tarefas**.
 - **Integração de funcionalidades mais avançadas no backend**.
+- **Implementação de testes unitários e End2End**
 
 A arquitetura foi construída de forma a permitir fácil escalabilidade, então melhorias podem ser feitas sem comprometer a estrutura já existente.
 
